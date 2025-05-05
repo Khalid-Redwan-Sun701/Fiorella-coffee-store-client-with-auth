@@ -1,14 +1,17 @@
-import { useState, useEffect } from 'react';
-import { useLoaderData } from 'react-router-dom';
-import CoffeeCard from './components/CoffeeCard';
-import './App.css';
-import Header from './components/Header/Header';
-
-
+import { useState, useEffect } from "react";
+import { useLoaderData } from "react-router-dom";
+import CoffeeCard from "./components/CoffeeCard";
+import "./App.css";
+import Header from "./components/Header/Header";
 
 function App() {
   const loadedCoffees = useLoaderData();
-  const [coffees, setCoffees] = useState(loadedCoffees);
+  console.log("loadedCoffees", loadedCoffees);
+
+  // Fix: Ensure coffees is always an array
+  const [coffees, setCoffees] = useState(
+    Array.isArray(loadedCoffees) ? loadedCoffees : []
+  );
   const [scrollY, setScrollY] = useState(0);
 
   // Handle scroll for parallax effect
@@ -17,16 +20,15 @@ function App() {
       setScrollY(window.scrollY);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   return (
     <div className="min-h-screen relative overflow-hidden bg-gradient-to-b from-amber-950 via-stone-900 to-stone-950">
-     
-    <Header></Header>
+      <Header></Header>
 
       {/* Coffee-themed animated background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -34,40 +36,40 @@ function App() {
         <div className="absolute w-64 h-32 rounded-3xl bg-amber-800/20 top-10 left-10 rotate-45 transform-gpu animate-coffee-float"></div>
         <div
           className="absolute w-48 h-24 rounded-3xl bg-amber-700/20 top-1/4 right-10 rotate-45 transform-gpu animate-coffee-float"
-          style={{ animationDelay: '2s' }}
+          style={{ animationDelay: "2s" }}
         ></div>
         <div
           className="absolute w-56 h-28 rounded-3xl bg-amber-900/20 bottom-1/4 left-1/3 rotate-45 transform-gpu animate-coffee-float"
-          style={{ animationDelay: '1s' }}
+          style={{ animationDelay: "1s" }}
         ></div>
         <div
           className="absolute w-40 h-20 rounded-3xl bg-amber-800/20 bottom-20 right-1/4 rotate-45 transform-gpu animate-coffee-float"
-          style={{ animationDelay: '3s' }}
+          style={{ animationDelay: "3s" }}
         ></div>
 
         {/* Coffee splashes */}
         <div
           className="absolute w-32 h-32 rounded-full bg-amber-600/10 blur-md top-1/3 left-1/5 animate-splash"
-          style={{ animationDelay: '0.5s' }}
+          style={{ animationDelay: "0.5s" }}
         ></div>
         <div
           className="absolute w-24 h-24 rounded-full bg-amber-700/10 blur-md top-2/3 right-1/3 animate-splash"
-          style={{ animationDelay: '2.5s' }}
+          style={{ animationDelay: "2.5s" }}
         ></div>
         <div
           className="absolute w-40 h-40 rounded-full bg-amber-800/10 blur-md bottom-1/4 left-2/3 animate-splash"
-          style={{ animationDelay: '1.7s' }}
+          style={{ animationDelay: "1.7s" }}
         ></div>
 
         {/* Coffee steam rising */}
         <div className="absolute w-6 h-32 bg-white/5 blur-xl top-1/4 left-1/4 animate-steam"></div>
         <div
           className="absolute w-8 h-40 bg-white/5 blur-xl top-1/4 right-1/3 animate-steam"
-          style={{ animationDelay: '1.5s' }}
+          style={{ animationDelay: "1.5s" }}
         ></div>
         <div
           className="absolute w-7 h-36 bg-white/5 blur-xl top-1/4 left-2/3 animate-steam"
-          style={{ animationDelay: '2.8s' }}
+          style={{ animationDelay: "2.8s" }}
         ></div>
 
         {/* Background details */}
@@ -90,102 +92,53 @@ function App() {
             <div className="w-16 h-16 mb-6 relative">
               <div
                 className="absolute inset-0 bg-amber-600 rounded-full opacity-20 animate-pulse"
-                style={{ animationDuration: '3s' }}
+                style={{ animationDuration: "3s" }}
               ></div>
               <div
                 className="absolute inset-2 bg-amber-500 rounded-full opacity-40 animate-pulse"
-                style={{ animationDuration: '3s', animationDelay: '0.5s' }}
+                style={{ animationDuration: "3s", animationDelay: "0.5s" }}
               ></div>
               <div
                 className="absolute inset-4 bg-amber-400 rounded-full opacity-60 animate-pulse"
-                style={{ animationDuration: '3s', animationDelay: '1s' }}
+                style={{ animationDuration: "3s", animationDelay: "1s" }}
               ></div>
             </div>
             <h1 className="text-5xl font-extrabold text-center text-amber-100 mb-4">
               Hot Hot Cold Cold Coffee
             </h1>
             <p className="text-amber-300/90 text-center text-lg font-light tracking-wide">
-              Discover our collection of {coffees.length} premium coffee
+              Discover our collection of{" "}
+              {Array.isArray(coffees) ? coffees.length : 0} premium coffee
               varieties
             </p>
             <div className="w-24 h-1 bg-amber-600/80 mx-auto mt-6 rounded-full"></div>
           </div>
         </header>
 
-
-        
-
-
         {/* Showing all CoffeeCard */}
 
         <div className="w-[90%] md:w-4/5 max-w-[1200px] grid md:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto pb-20">
-          {coffees.map((coffee) => (
-            <CoffeeCard
-              key={coffee._id}
-              coffee={coffee}
-              coffees={coffees}
-              setCoffees={setCoffees}
-            />
-          ))}
+          {Array.isArray(coffees) && coffees.length > 0 ? (
+            coffees.map((coffee) => (
+              <CoffeeCard
+                key={coffee._id}
+                coffee={coffee}
+                coffees={coffees}
+                setCoffees={setCoffees}
+              />
+            ))
+          ) : (
+            <div className="col-span-3 text-center py-10">
+              <p className="text-amber-200 text-lg">
+                No coffees available at the moment.
+              </p>
+              <p className="text-amber-300/70 mt-2">
+                Check back later for our fresh brews!
+              </p>
+            </div>
+          )}
         </div>
       </div>
-
-      {/* Add these keyframe animations to your CSS file */}
-      <style jsx>{`
-        @keyframes coffee-float {
-          0%,
-          100% {
-            transform: translateY(0) rotate(45deg);
-          }
-          50% {
-            transform: translateY(-10px) rotate(45deg);
-          }
-        }
-
-        @keyframes splash {
-          0%,
-          100% {
-            transform: scale(1);
-            opacity: 0.1;
-          }
-          50% {
-            transform: scale(1.2);
-            opacity: 0.2;
-          }
-        }
-
-        @keyframes steam {
-          0% {
-            opacity: 0;
-            transform: translateY(0) scaleX(1);
-          }
-          20% {
-            opacity: 0.3;
-          }
-          40% {
-            transform: translateY(-30px) scaleX(1.1);
-          }
-          60% {
-            opacity: 0.2;
-          }
-          100% {
-            transform: translateY(-60px) scaleX(1.5);
-            opacity: 0;
-          }
-        }
-
-        .animate-coffee-float {
-          animation: coffee-float 6s ease-in-out infinite;
-        }
-
-        .animate-splash {
-          animation: splash 8s ease-in-out infinite;
-        }
-
-        .animate-steam {
-          animation: steam 4s ease-out infinite;
-        }
-      `}</style>
     </div>
   );
 }

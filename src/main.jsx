@@ -14,7 +14,8 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
-    loader: async () => fetch("http://localhost:5000/coffee"),
+    loader: async () =>
+      fetch("https://coffee-store-server-omega-lilac.vercel.app/coffee"),
   },
   {
     path: "/addCoffee",
@@ -24,7 +25,9 @@ const router = createBrowserRouter([
     path: "/updateCoffee/:id",
     element: <UpdateCoffee></UpdateCoffee>,
     loader: async ({ params }) =>
-      fetch(`http://localhost:5000/coffee/${params.id}`),
+      fetch(
+        `https://coffee-store-server-omega-lilac.vercel.app/coffee/${params.id}`
+      ),
   },
 
   {
@@ -38,7 +41,8 @@ const router = createBrowserRouter([
   {
     path: "users",
     element: <Users></Users>,
-    loader: async () => fetch("http://localhost:5000/users"),
+    loader: async () =>
+      fetch("https://coffee-store-server-omega-lilac.vercel.app/users"),
   },
 ]);
 

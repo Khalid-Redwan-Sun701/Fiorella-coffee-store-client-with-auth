@@ -34,16 +34,16 @@ const SignIn = () => {
 
         const loginInfo = { email, lastSignInTime };
 
-        fetch(`http://localhost:5000/users`, {
+        fetch(`https://coffee-store-server-omega-lilac.vercel.app/users`, {
           method: "PATCH",
           headers: {
-            'content-type' : "application/json"
+            "content-type": "application/json",
           },
-          body : JSON.stringify(loginInfo)
+          body: JSON.stringify(loginInfo),
         })
           .then((response) => response.json())
           .then((data) => {
-            console.log("SignIN Updated info in DB",data);
+            console.log("SignIN Updated info in DB", data);
           });
       })
       .catch((error) => console.log(error.message));
@@ -90,7 +90,7 @@ const SignIn = () => {
                 {/* Form header */}
                 <div className="bg-gradient-to-r from-amber-100 to-amber-50 px-6 py-4 border-b border-amber-200">
                   <h2 className="text-2xl font-bold text-amber-800 text-center">
-                    Sign Up for Brew Rewards
+                    Missing Coffee Store ? Sign In
                   </h2>
                   <p className="text-amber-700 text-sm text-center mt-1">
                     Join our coffee community in less than a minute

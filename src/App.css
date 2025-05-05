@@ -1,2 +1,57 @@
 @import 'tailwindcss';
 @plugin "daisyui";
+
+/* Coffee animations */
+@keyframes coffee-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(45deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(45deg);
+  }
+}
+
+@keyframes splash {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.2;
+  }
+}
+
+@keyframes steam {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scaleX(1);
+  }
+  20% {
+    opacity: 0.3;
+  }
+  40% {
+    transform: translateY(-30px) scaleX(1.1);
+  }
+  60% {
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateY(-60px) scaleX(1.5);
+    opacity: 0;
+  }
+}
+
+.animate-coffee-float {
+  animation: coffee-float 6s ease-in-out infinite;
+}
+
+.animate-splash {
+  animation: splash 8s ease-in-out infinite;
+}
+
+.animate-steam {
+  animation: steam 4s ease-out infinite;
+}

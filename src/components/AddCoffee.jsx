@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Swal from 'sweetalert2';
-import Header from './Header/Header';
+import React from "react";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import Header from "./Header/Header";
 
 const AddCoffee = () => {
   const handleAddCoffee = (event) => {
@@ -24,19 +24,11 @@ const AddCoffee = () => {
       photo,
     };
 
-
-    
-
-
-
-
-
-
     // Send data to the server
-    fetch('http://localhost:5000/coffee', {
-      method: 'POST',
+    fetch("https://coffee-store-server-omega-lilac.vercel.app/coffee", {
+      method: "POST",
       headers: {
-        'content-type': 'application/json',
+        "content-type": "application/json",
       },
       body: JSON.stringify(newCoffee),
     })
@@ -44,10 +36,10 @@ const AddCoffee = () => {
       .then((data) => {
         if (data.insertedId) {
           Swal.fire({
-            title: 'Success!',
-            text: 'Coffee added successfully',
-            icon: 'success',
-            confirmButtonText: 'Cool',
+            title: "Success!",
+            text: "Coffee added successfully",
+            icon: "success",
+            confirmButtonText: "Cool",
           });
 
           form.reset();
@@ -67,42 +59,40 @@ const AddCoffee = () => {
         <div className="absolute w-40 h-20 rounded-3xl bg-amber-900/5 left-10 top-16 rotate-45 transform-gpu animate-coffee-float-slow"></div>
         <div
           className="absolute w-32 h-16 rounded-3xl bg-amber-800/5 right-20 top-40 rotate-45 transform-gpu animate-coffee-float-slow"
-          style={{ animationDelay: '1.2s' }}
+          style={{ animationDelay: "1.2s" }}
         ></div>
         <div
           className="absolute w-36 h-18 rounded-3xl bg-amber-700/5 left-1/4 bottom-20 rotate-45 transform-gpu animate-coffee-float-slow"
-          style={{ animationDelay: '2.5s' }}
+          style={{ animationDelay: "2.5s" }}
         ></div>
         <div
           className="absolute w-28 h-14 rounded-3xl bg-amber-800/5 right-1/4 bottom-40 rotate-45 transform-gpu animate-coffee-float-slow"
-          style={{ animationDelay: '3.7s' }}
+          style={{ animationDelay: "3.7s" }}
         ></div>
-
-       
 
         {/* Coffee cup outline */}
         <div
           className="absolute w-80 h-80 rounded-full border-2 border-amber-800/5 left-0 -bottom-40 animate-coffee-sway"
-          style={{ animationDelay: '0.5s' }}
+          style={{ animationDelay: "0.5s" }}
         ></div>
         <div
           className="absolute w-64 h-64 rounded-full border-2 border-amber-700/5 right-0 -bottom-32 animate-coffee-sway"
-          style={{ animationDelay: '1.8s' }}
+          style={{ animationDelay: "1.8s" }}
         ></div>
 
         {/* Coffee drips */}
         <div className="absolute h-16 w-1 bg-amber-800/5 top-0 left-1/4 animate-drip"></div>
         <div
           className="absolute h-16 w-1 bg-amber-700/5 top-0 left-1/3 animate-drip"
-          style={{ animationDelay: '1.1s' }}
+          style={{ animationDelay: "1.1s" }}
         ></div>
         <div
           className="absolute h-16 w-1 bg-amber-900/5 top-0 left-1/2 animate-drip"
-          style={{ animationDelay: '2.3s' }}
+          style={{ animationDelay: "2.3s" }}
         ></div>
         <div
           className="absolute h-16 w-1 bg-amber-800/5 top-0 left-2/3 animate-drip"
-          style={{ animationDelay: '3.2s' }}
+          style={{ animationDelay: "3.2s" }}
         ></div>
 
         {/* Subtle gradient overlay */}
@@ -200,7 +190,6 @@ const AddCoffee = () => {
                     className="input input-bordered w-full bg-white/70 border-amber-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-300"
                     required
                   />
-
                 </label>
               </div>
             </div>

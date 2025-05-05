@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect } from "react";
 import Header from "./Header/Header";
 import { AuthContext } from "../Providers/AuthProvider";
 import Swal from "sweetalert2";
@@ -31,7 +31,7 @@ const SignUp = () => {
         console.log("result User", result.user);
 
         // save newer user info to the database
-        fetch("http://localhost:5000/users", {
+        fetch("https://coffee-store-server-omega-lilac.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -217,9 +217,9 @@ const SignUp = () => {
                           <NavLink to="/signIn">
                             <p className="text-amber-800">
                               Already a member?
-                              <a className="text-amber-600 hover:text-amber-900 ml-1 font-medium hover:underline cursor-pointer transition-colors">
+                              <span className="text-amber-600 hover:text-amber-900 ml-1 font-medium hover:underline cursor-pointer transition-colors">
                                 Log in
-                              </a>
+                              </span>
                             </p>
                           </NavLink>
                         </div>

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
-import Swal from 'sweetalert2';
-import Header from './Header/Header';
+import React, { useEffect, useState } from "react";
+import { Link, useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
+import Header from "./Header/Header";
 
 const UpdateCoffee = () => {
   const updatedCoffee = useLoaderData();
@@ -15,9 +15,9 @@ const UpdateCoffee = () => {
       setScrollY(window.scrollY);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -35,10 +35,10 @@ const UpdateCoffee = () => {
     };
 
     // Send updated data to server
-    fetch(`http://localhost:5000/coffee/${_id}`, {
-      method: 'PUT',
+    fetch(`https://coffee-store-server-omega-lilac.vercel.app/coffee/${_id}`, {
+      method: "PUT",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(updatedCoffee),
     })
@@ -46,10 +46,10 @@ const UpdateCoffee = () => {
       .then((data) => {
         if (data.modifiedCount > 0) {
           Swal.fire({
-            title: 'Success!',
-            text: 'Coffee updated successfully!',
-            icon: 'success',
-            confirmButtonText: 'Cool',
+            title: "Success!",
+            text: "Coffee updated successfully!",
+            icon: "success",
+            confirmButtonText: "Cool",
           });
         }
       });
@@ -57,26 +57,25 @@ const UpdateCoffee = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-amber-50 via-amber-100 to-amber-50 relative overflow-hidden">
-     
-     <Header></Header>
+      <Header></Header>
       {/* Coffee-themed animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Coffee bean shapes - very subtle */}
         <div className="absolute w-64 h-32 rounded-3xl bg-amber-800/5 top-10 left-10 rotate-45 transform-gpu animate-coffee-float"></div>
         <div
           className="absolute w-48 h-24 rounded-3xl bg-amber-700/5 top-1/4 right-10 rotate-45 transform-gpu animate-coffee-float"
-          style={{ animationDelay: '2s' }}
+          style={{ animationDelay: "2s" }}
         ></div>
         <div
           className="absolute w-56 h-28 rounded-3xl bg-amber-900/5 bottom-1/4 left-1/3 rotate-45 transform-gpu animate-coffee-float"
-          style={{ animationDelay: '1s' }}
+          style={{ animationDelay: "1s" }}
         ></div>
 
         {/* Subtle coffee steam shapes */}
         <div className="absolute w-6 h-32 bg-amber-700/5 blur-xl top-1/4 left-1/4 animate-steam"></div>
         <div
           className="absolute w-8 h-40 bg-amber-800/5 blur-xl top-1/4 right-1/3 animate-steam"
-          style={{ animationDelay: '1.5s' }}
+          style={{ animationDelay: "1.5s" }}
         ></div>
 
         {/* Coffee ring stains - very subtle */}
@@ -94,15 +93,15 @@ const UpdateCoffee = () => {
             <div className="w-12 h-12 relative">
               <div
                 className="absolute inset-0 bg-amber-600 rounded-full opacity-10 animate-pulse"
-                style={{ animationDuration: '3s' }}
+                style={{ animationDuration: "3s" }}
               ></div>
               <div
                 className="absolute inset-2 bg-amber-500 rounded-full opacity-20 animate-pulse"
-                style={{ animationDuration: '3s', animationDelay: '0.5s' }}
+                style={{ animationDuration: "3s", animationDelay: "0.5s" }}
               ></div>
               <div
                 className="absolute inset-4 bg-amber-400 rounded-full opacity-30 animate-pulse"
-                style={{ animationDuration: '3s', animationDelay: '1s' }}
+                style={{ animationDuration: "3s", animationDelay: "1s" }}
               ></div>
             </div>
           </div>
@@ -221,7 +220,7 @@ const UpdateCoffee = () => {
 
           <div
             className="mt-10 flex justify-center animate-fade-in"
-            style={{ animationDelay: '0.5s' }}
+            style={{ animationDelay: "0.5s" }}
           >
             <Link to="/">
               <span className="text-amber-800 hover:text-amber-600 transition-all duration-300 underline underline-offset-4 decoration-amber-300 hover:decoration-amber-500">

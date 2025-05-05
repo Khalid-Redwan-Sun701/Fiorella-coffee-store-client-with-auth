@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import Swal from 'sweetalert2';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
   const { _id, name, quantity, supplier, taste, category, details, photo } =
@@ -10,25 +10,28 @@ const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
   const handleDelete = (_id) => {
     console.log(_id);
     Swal.fire({
-      title: 'Are you sure?',
+      title: "Are you sure?",
       text: "You won't be able to revert this!",
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!',
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/coffee/${_id}`, {
-          method: 'DELETE',
-        })
+        fetch(
+          `https://coffee-store-server-omega-lilac.vercel.app/coffee/${_id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
               Swal.fire({
-                title: 'Deleted!',
-                text: 'Your Coffee has been deleted.',
-                icon: 'success',
+                title: "Deleted!",
+                text: "Your Coffee has been deleted.",
+                icon: "success",
               });
               const remaining = coffees.filter((coffee) => coffee._id !== _id);
               setCoffees(remaining);
@@ -43,17 +46,17 @@ const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
       className="card bg-gradient-to-br from-amber-50 to-stone-100 shadow-lg overflow-hidden rounded-xl transform transition-all duration-500 ease-in-out hover:scale-105 h-full"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      style={{ maxWidth: '350px' }}
+      style={{ maxWidth: "350px" }}
     >
       <figure className="p-4 bg-gradient-to-br from-amber-100 to-amber-50 overflow-hidden">
         <div className="relative w-full h-64 overflow-hidden flex items-center justify-center">
           <div
             className={`absolute inset-0 bg-gradient-to-br from-amber-200 to-transparent opacity-0 transition-opacity duration-500 ${
-              isHovered ? 'opacity-20' : ''
+              isHovered ? "opacity-20" : ""
             }`}
           ></div>
           <img
-            src={photo || '/api/placeholder/350/260'}
+            src={photo || "/api/placeholder/350/260"}
             alt={name}
             className="w-full h-auto max-h-64 object-contain transition-all duration-700 ease-out"
           />
@@ -64,7 +67,7 @@ const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
         <div>
           <h2
             className={`card-title text-xl font-bold text-amber-800 transition-all duration-300 ${
-              isHovered ? 'text-amber-900' : ''
+              isHovered ? "text-amber-900" : ""
             }`}
           >
             {name}
@@ -113,9 +116,9 @@ const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
             <span className="relative z-10">Details</span>
             <div
               className={`absolute bottom-0 left-0 w-full h-0 bg-amber-800 transition-all duration-300 ${
-                isHovered ? 'h-full' : 'h-0'
+                isHovered ? "h-full" : "h-0"
               }`}
-              style={{ zIndex: 1, transition: 'height 0.3s ease' }}
+              style={{ zIndex: 1, transition: "height 0.3s ease" }}
             ></div>
           </button>
 
@@ -154,7 +157,7 @@ const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
 
       <div
         className={`absolute inset-0 border-2 border-amber-300 rounded-xl opacity-0 transition-opacity duration-300 pointer-events-none ${
-          isHovered ? 'opacity-100' : ''
+          isHovered ? "opacity-100" : ""
         }`}
       ></div>
     </div>
