@@ -32,7 +32,7 @@ const Header = () => {
         showHeader ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <div className="navbar bg-amber-500/80 backdrop-blur-md shadow-sm border-none rounded-lg transition-opacity duration-500 w-[90%] lg:px-28">
+      <div className="navbar bg-[#D27F00] backdrop-blur-md shadow-sm border-none rounded-lg transition-opacity duration-500 w-[90%] lg:px-28">
         {/* === Navbar Start === */}
         <div className="navbar-start">
           <div className="dropdown">

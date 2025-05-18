@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import Header from "./Header/Header";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const AddCoffee = () => {
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      easing: "ease-out",
+      once: false,
+      mirror: false,
+      offset: 50,
+    });
+  }, []);
+
   const handleAddCoffee = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -102,7 +115,11 @@ const AddCoffee = () => {
       {/* Main content */}
       <div className="relative z-10 p-10 md:p-24">
         {/* Coffee icon with animation */}
-        <div className="flex justify-center mb-6">
+        <div
+          className="flex justify-center mb-6"
+          data-aos="fade-down"
+          data-aos-delay="100"
+        >
           <div className="relative w-20 h-20">
             <div className="absolute w-12 h-8 rounded-b-full border-2 border-amber-800 bottom-2 left-4"></div>
             <div className="absolute w-8 h-6 rounded-full border-2 border-amber-800 bottom-7 left-6 animate-handle-sway"></div>
@@ -112,19 +129,36 @@ const AddCoffee = () => {
           </div>
         </div>
 
-        <h2 className="text-4xl font-extrabold text-center text-amber-900 mb-8">
+        <h2
+          className="text-4xl font-extrabold text-center text-amber-900 mb-8"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
           Brew Something New
         </h2>
-        <p className="text-center text-amber-700 mb-10 max-w-xl mx-auto">
+        <p
+          className="text-center text-amber-700 mb-10 max-w-xl mx-auto"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
           Add your unique coffee creation to our collection. Fill in the details
           below to share your coffee with the world.
         </p>
 
-        <div className="max-w-4xl mx-auto bg-white/80 backdrop-blur-sm rounded-lg shadow-lg p-8 border border-amber-100">
+        <div
+          className="max-w-4xl mx-auto bg-white/80 backdrop-blur-sm rounded-lg shadow-lg p-8 border border-amber-100"
+          data-aos="zoom-in"
+          data-aos-delay="400"
+          data-aos-duration="1000"
+        >
           <form onSubmit={handleAddCoffee} className="space-y-6">
             {/* form row 1 - name & quantity */}
             <div className="md:flex justify-center gap-8">
-              <div className="form-control md:w-1/2">
+              <div
+                className="form-control md:w-1/2"
+                data-aos="fade-right"
+                data-aos-delay="500"
+              >
                 <label className="label">
                   <span className="label-text font-medium text-amber-900">
                     Coffee Name
@@ -140,7 +174,11 @@ const AddCoffee = () => {
                   />
                 </label>
               </div>
-              <div className="form-control md:w-1/2 mt-4 md:mt-0">
+              <div
+                className="form-control md:w-1/2 mt-4 md:mt-0"
+                data-aos="fade-left"
+                data-aos-delay="600"
+              >
                 <label className="label">
                   <span className="label-text font-medium text-amber-900">
                     Available Quantity
@@ -160,7 +198,11 @@ const AddCoffee = () => {
 
             {/* form row 2 - supplier & taste */}
             <div className="md:flex justify-center gap-8">
-              <div className="form-control md:w-1/2">
+              <div
+                className="form-control md:w-1/2"
+                data-aos="fade-right"
+                data-aos-delay="700"
+              >
                 <label className="label">
                   <span className="label-text font-medium text-amber-900">
                     Supplier
@@ -176,7 +218,11 @@ const AddCoffee = () => {
                   />
                 </label>
               </div>
-              <div className="form-control md:w-1/2 mt-4 md:mt-0">
+              <div
+                className="form-control md:w-1/2 mt-4 md:mt-0"
+                data-aos="fade-left"
+                data-aos-delay="800"
+              >
                 <label className="label">
                   <span className="label-text font-medium text-amber-900">
                     Taste
@@ -196,7 +242,11 @@ const AddCoffee = () => {
 
             {/* form row 3 - category and details */}
             <div className="md:flex justify-center gap-8">
-              <div className="form-control md:w-1/2">
+              <div
+                className="form-control md:w-1/2"
+                data-aos="fade-right"
+                data-aos-delay="900"
+              >
                 <label className="label">
                   <span className="label-text font-medium text-amber-900">
                     Category
@@ -212,7 +262,11 @@ const AddCoffee = () => {
                   />
                 </label>
               </div>
-              <div className="form-control md:w-1/2 mt-4 md:mt-0">
+              <div
+                className="form-control md:w-1/2 mt-4 md:mt-0"
+                data-aos="fade-left"
+                data-aos-delay="1000"
+              >
                 <label className="label">
                   <span className="label-text font-medium text-amber-900">
                     Details
@@ -231,7 +285,11 @@ const AddCoffee = () => {
             </div>
 
             {/* form row 4 - photo URL */}
-            <div className="form-control w-full">
+            <div
+              className="form-control w-full"
+              data-aos="fade-up"
+              data-aos-delay="1100"
+            >
               <label className="label">
                 <span className="label-text font-medium text-amber-900">
                   Photo URL
@@ -252,10 +310,16 @@ const AddCoffee = () => {
               className="btn btn-block bg-amber-800 hover:bg-amber-900 text-white border-none transition-colors duration-300 mt-8"
               type="submit"
               value="Add Coffee"
+              data-aos="flip-up"
+              data-aos-delay="1200"
             />
           </form>
 
-          <div className="mt-10 text-center">
+          <div
+            className="mt-10 text-center"
+            data-aos="fade-up"
+            data-aos-delay="1300"
+          >
             <Link
               to="/"
               className="inline-flex items-center text-amber-800 hover:text-amber-900 transition-colors font-medium"

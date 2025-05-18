@@ -3,6 +3,8 @@ import { useLoaderData } from "react-router-dom";
 import CoffeeCard from "./components/CoffeeCard";
 import "./App.css";
 import Header from "./components/Header/Header";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function App() {
   const loadedCoffees = useLoaderData();
@@ -13,6 +15,24 @@ function App() {
     Array.isArray(loadedCoffees) ? loadedCoffees : []
   );
   const [scrollY, setScrollY] = useState(0);
+
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      easing: "ease-in-out",
+      once: false,
+      mirror: true,
+      offset: 100,
+    });
+  }, []);
+
+  // Refresh AOS when coffees are loaded
+  useEffect(() => {
+    if (coffees.length > 0) {
+      AOS.refresh();
+    }
+  }, [coffees]);
 
   // Handle scroll for parallax effect
   useEffect(() => {
@@ -88,7 +108,11 @@ function App() {
       {/* Main content with enhanced styling */}
       <div className="relative z-10 mx-auto px-5">
         <header className="pt-20 pb-12">
-          <div className="flex flex-col items-center justify-center">
+          <div
+            className="flex flex-col items-center justify-center"
+            data-aos="fade-down"
+            data-aos-delay="100"
+          >
             <div className="w-16 h-16 mb-6 relative">
               <div
                 className="absolute inset-0 bg-amber-600 rounded-full opacity-20 animate-pulse"
@@ -103,32 +127,49 @@ function App() {
                 style={{ animationDuration: "3s", animationDelay: "1s" }}
               ></div>
             </div>
-            <h1 className="text-5xl font-extrabold text-center text-amber-100 mb-4">
+            <h1
+              className="text-5xl font-extrabold text-center text-amber-100 mb-4"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
               Hot Hot Cold Cold Coffee
             </h1>
-            <p className="text-amber-300/90 text-center text-lg font-light tracking-wide">
+            <p
+              className="text-amber-300/90 text-center text-lg font-light tracking-wide"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
               Discover our collection of{" "}
               {Array.isArray(coffees) ? coffees.length : 0} premium coffee
               varieties
             </p>
-            <div className="w-24 h-1 bg-amber-600/80 mx-auto mt-6 rounded-full"></div>
+            <div
+              className="w-24 h-1 bg-amber-600/80 mx-auto mt-6 rounded-full"
+              data-aos="zoom-in"
+              data-aos-delay="400"
+            ></div>
           </div>
         </header>
 
         {/* Showing all CoffeeCard */}
-
         <div className="w-[90%] md:w-4/5 max-w-[1200px] grid md:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto pb-20">
           {Array.isArray(coffees) && coffees.length > 0 ? (
-            coffees.map((coffee) => (
-              <CoffeeCard
+            coffees.map((coffee, index) => (
+              <div
                 key={coffee._id}
-                coffee={coffee}
-                coffees={coffees}
-                setCoffees={setCoffees}
-              />
+                data-aos="fade-up"
+                data-aos-delay={100 + (index % 3) * 100}
+                data-aos-duration="800"
+              >
+                <CoffeeCard
+                  coffee={coffee}
+                  coffees={coffees}
+                  setCoffees={setCoffees}
+                />
+              </div>
             ))
           ) : (
-            <div className="col-span-3 text-center py-10">
+            <div className="col-span-3 text-center py-10" data-aos="fade-in">
               <p className="text-amber-200 text-lg">
                 No coffees available at the moment.
               </p>
